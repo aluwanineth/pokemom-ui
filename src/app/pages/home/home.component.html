@@ -1,0 +1,33 @@
+<h2 class="content-block">Home</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
+      <input type="text" placeholder="Search by Name" name="search2">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="images">
+      <div *ngFor="let pokemom of listRepsonseResult?.results">
+        <div (click)="showDetail(pokemom)" class="item-content">
+          <img src="{{pokemom.imageUrl}}" />
+          <div class="item-options">
+            <div>
+              <div class="large-text">{{pokemom.name}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <dx-popup [width]="660" [height]="540" [showTitle]="true" [title]="title"
+      [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        [(visible)]="popupVisible">
+        <div *dxTemplate="let data of 'content'">
+          <div class='popup-pokemom-details'>
+            <app-pokemom-detail [pokeMomDetailData]="pokeMomDetail"></app-pokemom-detail>
+          </div>
+        </div>
+      </dx-popup>
+    </div>
+  </div>
+
+</div>

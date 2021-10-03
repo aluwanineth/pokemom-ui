@@ -1,0 +1,25 @@
+<div class='popup-pokemom-details'>
+<div class='large-text'>{{pokeMomDetailData.name}}</div>
+<div class='images'>
+  <img src={{pokeMomDetailData.imageUrl}} />
+</div>
+
+
+<h2 class="content-block">Stats</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-data-grid id="gridContainer" [dataSource]="stats" [remoteOperations]="false" [allowColumnReordering]="true"
+      [rowAlternationEnabled]="true" [showBorders]="true">
+
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 25, 50, 100]"></dxo-pager>
+
+      <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+
+      <dxi-column dataField="baseStat" dataType="string" caption="Base Stat"></dxi-column>
+      <dxi-column dataField="effort" dataType="string" caption="Effort"></dxi-column>
+      <dxi-column dataField="statStat.name" dataType="string" caption="Stat Name"></dxi-column>
+
+    </dx-data-grid>
+  </div>
+</div>

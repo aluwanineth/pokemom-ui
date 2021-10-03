@@ -1,0 +1,71 @@
+::ng-deep .large-text {
+  font-size: 24px;
+  color: #ff6a50;
+}
+
+::ng-deep .opacity {
+  opacity: 0.5;
+}
+
+::ng-deep .images {
+  font-size: 0;
+}
+
+::ng-deep .images > div {
+  display: inline-block;
+  width: 33.3%;
+  vertical-align: top;
+}
+
+::ng-deep .images .item-content {
+  position: relative;
+  margin: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+::ng-deep .images .item-content > img {
+  width: 100%;
+}
+
+::ng-deep .item-content .item-options {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+::ng-deep .images .item-content:hover > .item-options {
+  box-shadow: inset 0 0 0 2px #f05b41;
+}
+
+::ng-deep .item-content .item-options > div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  padding-top: 4px;
+  background-color: rgba(19, 32, 51, 0.8);
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+}
+
+::ng-deep .images .item-content:hover > .item-options > div {
+  border-bottom: 2px solid #f05b41;
+  border-left: 2px solid #f05b41;
+  border-right: 2px solid #f05b41;
+}
+
+::ng-deep .popup-pokemom-details {
+  overflow: hidden;
+  position: relative;
+}
+
+::ng-deep .popup-pokemom-details .images {
+  width: 700px;
+}
