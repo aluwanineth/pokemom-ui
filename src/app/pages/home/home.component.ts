@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemomService } from 'src/app/services/pokemom.service';
+import notify from 'devextreme/ui/notify';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,10 @@ export class HomeComponent implements OnInit {
   pokeName: string = '';
   pokeUrl: string = '';
   popupVisible = false;
-  title = "Pokemom Details"
+  title = "Pokemom Details";
+  loading = false;
+  formData: any = {};
+
   constructor(private pokemomService: PokemomService) { }
 
   ngOnInit(): void {
@@ -20,14 +25,40 @@ export class HomeComponent implements OnInit {
       this.listRepsonseResult = response;
     }, error => {
       console.log(error);
+      notify('Something went wrong', 'error', 2000);
     });
   }
 
   showDetail(pokemom: any) {
     this.pokeMomDetail = pokemom;
     this.popupVisible = true;
+  }
+
+
+  async search() {
+   // var pokeName = this.formData.name;
+    console.log(this.pokeName);
+    this.loading = true;
+    this.pokemomService.search(this.pokeName).subscribe( response => {
+      this.pokeMomDetail = response;
+      if (this.pokeMomDetail.message === 'Successfully retrieve pokemom data')  {
+        console.log('result:', this.pokeMomDetail);
+        this.showDetail(this.pokeMomDetail.results)
+      }
+      else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Pokemom not found!',
+          footer: 'try a diffrent pokemom guy'
+        })
+      }
+
+    }, error => {
+      this.loading = false;
+      console.log(error);
+      notify('Something went wrong', 'error', 2000);
+    });
     }
-
-
-}
+  }
 

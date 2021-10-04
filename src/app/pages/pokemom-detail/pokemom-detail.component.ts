@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PokemomService } from 'src/app/services/pokemom.service';
+import notify from 'devextreme/ui/notify';
 
 @Component({
   selector: 'app-pokemom-detail',
@@ -14,9 +15,6 @@ export class PokemomDetailComponent implements OnInit {
   constructor(private pokemomService: PokemomService) { }
 
   ngOnInit(): void {
-    // var data = this.pokeMomDetailData.pokeUrl.split('/');
-    // var id = data[6];
-    // this.getPokemomDetail(id, data.name);
   }
 
   ngOnChanges() {
@@ -28,12 +26,10 @@ export class PokemomDetailComponent implements OnInit {
   getPokemomDetail(pokeId: string, pokeName: string) {
     this.pokemomService.getPokemomDetail(pokeId,pokeName).subscribe( response => {
       this.pokeMomDetail = response.results;
-      this.speices = response.results.species;
-       this.stats = response.results.stat;
-      console.log('species',this.stats);
-      console.log(this.pokeMomDetail);
+      this.stats = response.results.stat;
     }, error => {
       console.log(error);
+      notify('Something went wrong', 'error', 2000);
     });
   }
 

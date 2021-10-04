@@ -24,4 +24,10 @@ private REST_API_SERVER = '';
     var endPoint = `${this.REST_API_SERVER}/api/Pokemoms/getPokemomDetail?pokeId=${pokeId}&name=${pokeName}`;
     return this.httpClient.get(endPoint);
   }
+
+  search(pokeName: string): Observable<any> {
+    console.log('pokeName', pokeName);
+    var endPoint = `${this.REST_API_SERVER}/api/Pokemoms/searchForPokemom?name=${pokeName}`;
+    return this.httpClient.get(endPoint);
+  }
 }
